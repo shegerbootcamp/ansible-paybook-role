@@ -83,7 +83,7 @@ PLAY RECAP *********************************************************************
 ```
 ## Screenshot
 
-![Webserver](https://github.com:shegerbootcamp/ansible-paybook-role/apache/files/website-url.png)
+![Webserver](apache/files/website-url.png)
 
 ## Setting Up a New Role
 

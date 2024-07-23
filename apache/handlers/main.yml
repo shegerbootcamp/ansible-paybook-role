@@ -1,0 +1,12 @@
+---
+# handlers file for apache
+- name: restart apache
+  ansible.builtin.service:
+    name: "{{ apache_service }}"
+    state: restarted
+  when: ansible_facts['os_family'] != 'Darwin'
+
+- name: restart apache on macOS
+  ansible.builtin.command: sudo apachectl restart
+  become: true
+  when: ansible_facts['os_family'] == 'Darwin'

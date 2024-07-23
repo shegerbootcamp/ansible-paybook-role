@@ -1,0 +1,6 @@
+---
+- name: Test Apache role
+  hosts: web
+  become: true
+  roles:
+    - apache

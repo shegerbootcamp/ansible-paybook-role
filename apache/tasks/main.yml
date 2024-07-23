@@ -1,0 +1,30 @@
+---
+- name: Determine operating system
+  set_fact:
+    is_macos: "{{ ansible_facts['os_family'] == 'Darwin' }}"
+    is_fedora: "{{ ansible_facts['distribution'] == 'Fedora' }}"
+    is_debian: "{{ ansible_facts['os_family'] == 'Debian' }}"
+
+- name: Install Apache on macOS
+  include_tasks: install_mac.yml
+  when: is_macos
+
+- name: Install Apache on Fedora
+  include_tasks: install_fedora.yml
+  when: is_fedora
+
+- name: Install Apache on Debian/Ubuntu
+  include_tasks: install_debian.yml
+  when: is_debian
+
+- name: Perform a health check on the website
+  ansible.builtin.uri:
+    url: "http://{{ ansible_default_ipv4.address }}/"
+    return_content: true
+  register: http_response
+  ignore_errors: true
+
+- name: Notify if the website is not available
+  ansible.builtin.debug:
+    msg: "Health check failed. Please investigate."
+  when: http_response.status is not defined or http_response.status != 200

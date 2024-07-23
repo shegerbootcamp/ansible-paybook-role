@@ -1,0 +1,19 @@
+---
+- name: Ensure the {{ apache_package }} package is installed
+  ansible.builtin.package:
+    name: "{{ apache_package }}"
+    state: present
+
+- name: Start the {{ apache_service }} service if needed
+  ansible.builtin.service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: true
+
+- name: Deploy custom index.html
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    mode: "0644"
+  notify:
+    - restart apache

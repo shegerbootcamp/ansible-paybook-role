@@ -1,0 +1,17 @@
+---
+- name: Ensure Apache is installed on macOS
+  ansible.builtin.homebrew:
+    name: httpd
+    state: present
+
+- name: Start Apache service on macOS
+  ansible.builtin.command: sudo apachectl start
+  become: true
+
+- name: Deploy custom index.html
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /usr/local/var/www/index.html
+    mode: "0644"
+  notify:
+    - restart apache

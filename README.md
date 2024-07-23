@@ -81,6 +81,10 @@ changed: [192.168.64.3]
 PLAY RECAP **************************************************************************************************************************************************************
 192.168.64.3               : ok=8    changed=2    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0  
 ```
+## Screenshot
+
+![Webserver](https://github.com:shegerbootcamp/ansible-paybook-role/apache/files/website-url.png)
+
 ## Setting Up a New Role
 
 To create a new Ansible role, you can use the `ansible-galaxy` command. For this project, the role is named `apache`. Run the following command to initialize a new role:

@@ -1,6 +1,6 @@
-Here's a `README.md` file for your project that includes instructions on adding a user to `NOPASSWD`, running the Ansible playbook, and setting up a new role using `ansible-galaxy`.
+### Deploy Apache Website on Remote Servers using Ansible
+Project that includes instructions on adding a user to `NOPASSWD`, running the Ansible playbook, and setting up a new role using `ansible-galaxy` & Deploy Apache server on remote servers.
 
-### README.md
 
 ```markdown
 # Ansible Apache Setup
@@ -9,29 +9,32 @@ This project automates the installation and configuration of the Apache web serv
 
 ## Prerequisites
 
-- Ansible installed on your local machine
-- SSH access to the target machines
+- Ansible installed on your local machine or cloud Ansible Master node
+- SSH access to the target machines - Copy master node public key to remote servers authorized_keys file 
 - Properly configured inventory file with your target machines
 
-## Adding a User to NOPASSWD on Terminal
+## Adding a User to NOPASSWD on remote servers Terminal
 
 To allow a user to execute commands without needing to enter a password for `sudo`, you can add them to the `NOPASSWD` list. Run the following command in the terminal:
 
 ```sh
 echo '<username> ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/<remoteusername>
+
+Example : For ubuntu with user ubuntu
+echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/ubuntu
 ```
 
 Replace `<username>` with your desired username and `<remoteusername>` with the name of the user on the remote machine.
 
 ## Running the Ansible Playbook
 
-To run the Ansible playbook that installs and configures Apache, use the following command:
+To run the Ansible playbook of this project that installs and configures Apache, use the following command:
 
 ```sh
 ansible-playbook -i apache/tests/inventory app/site.yml
 ```
 
-Make sure the `inventory` file in the `apache/tests` directory is correctly configured with the details of your target machines.
+Make sure the `inventory` file in the `apache/tests` directory is correctly configured with the details of your target machines IP.
 
 Output looks like 
 

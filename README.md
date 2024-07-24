@@ -2,7 +2,6 @@
 Project that includes instructions on adding a user to `NOPASSWD`, running the Ansible playbook, and setting up a new role using `ansible-galaxy` & Deploy Apache server on remote servers.
 
 
-```markdown
 # Ansible Apache Setup
 
 This project automates the installation and configuration of the Apache web server on different operating systems using Ansible.
